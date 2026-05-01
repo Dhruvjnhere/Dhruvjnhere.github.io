@@ -909,8 +909,8 @@ textarea.form-input { min-height: 100px; resize: vertical; }
   -webkit-backdrop-filter: blur(20px) !important;
 }
 
-/* ── RESPONSIVE: TABLET (≤ 900px) ── */
-@media (max-width: 900px) {
+/* ── RESPONSIVE: TABLET ONLY (601–900px) ── */
+@media (min-width: 601px) and (max-width: 900px) {
   .app-grid {
     grid-template-columns: 48px 1fr;
     grid-template-rows: 30px 36px 1fr 0px 22px;
