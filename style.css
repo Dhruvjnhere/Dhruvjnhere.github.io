@@ -950,9 +950,14 @@ textarea.form-input { min-height: 100px; resize: vertical; }
   .titlebar-search { display: none; }
   .mac-controls { left: 8px; }
 
-  /* Tabs bar mobile */
+  /* Tabs bar mobile - show ALL tabs for navigation */
   .tabs-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .tab { padding: 0 10px; font-size: 10px; min-width: max-content; }
+  .tab {
+    display: flex !important; /* Override inline display:none */
+    padding: 0 10px; font-size: 10px; min-width: max-content;
+  }
+  .tab .close { display: none; } /* Hide close buttons on mobile */
+  .tab .tab-icon { display: none; } /* Hide file icons to save space */
 
   /* Editor / Pages */
   .page {
