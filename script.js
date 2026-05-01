@@ -784,3 +784,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Observe all reveals
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
+
+// ── Mobile Sidebar Drawer ──
+const mobileHamburger = document.getElementById('mobile-hamburger');
+const sidebar = document.getElementById('sidebar');
+const mobileOverlay = document.getElementById('mobile-overlay');
+
+function openMobileSidebar() {
+  sidebar?.classList.add('mobile-open');
+  mobileOverlay?.classList.add('active');
+}
+
+function closeMobileSidebar() {
+  sidebar?.classList.remove('mobile-open');
+  mobileOverlay?.classList.remove('active');
+}
+
+mobileHamburger?.addEventListener('click', openMobileSidebar);
+mobileOverlay?.addEventListener('click', closeMobileSidebar);
+
+// Close sidebar when a file is clicked on mobile
+document.querySelectorAll('.sidebar .file-item').forEach(item => {
+  item.addEventListener('click', () => {
+    closeMobileSidebar();
+  });
+});

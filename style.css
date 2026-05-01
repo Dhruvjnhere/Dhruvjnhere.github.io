@@ -122,6 +122,15 @@ body {
   position: absolute; left: 12px;
   display: flex; gap: 8px;
 }
+.mobile-hamburger {
+  display: none;
+  position: absolute; left: 12px;
+  align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0.7;
+  padding: 4px;
+}
+.mobile-hamburger:hover { opacity: 1; }
+.mobile-overlay { display: none; }
 .mac-btn {
   width: 12px; height: 12px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -942,22 +951,54 @@ textarea.form-input { min-height: 100px; resize: vertical; }
 
   /* Hide activity bar on mobile */
   .activity-bar { display: none; }
-  .sidebar { display: none; }
   .menubar { display: none; }
+
+  /* Mobile hamburger menu button */
+  .mobile-hamburger {
+    display: flex !important;
+  }
+
+  /* Sidebar as slide-out drawer on mobile */
+  .sidebar {
+    display: flex !important;
+    position: fixed;
+    top: 0; left: -280px; bottom: 0;
+    width: 260px;
+    z-index: 1000;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-right: 1px solid var(--border);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+    background: var(--bg2);
+  }
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  /* Dark backdrop overlay */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+  }
+  .mobile-overlay.active {
+    display: block;
+  }
 
   /* Title bar mobile */
   .titlebar { font-size: 10px; padding: 0 8px; }
   .titlebar-search { display: none; }
-  .mac-controls { left: 8px; }
+  .mac-controls { display: none; }
 
-  /* Tabs bar mobile - show ALL tabs for navigation */
+  /* Tabs bar mobile - show ALL tabs */
   .tabs-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .tab {
-    display: flex !important; /* Override inline display:none */
+    display: flex !important;
     padding: 0 10px; font-size: 10px; min-width: max-content;
   }
-  .tab .close { display: none; } /* Hide close buttons on mobile */
-  .tab .tab-icon { display: none; } /* Hide file icons to save space */
+  .tab .close { display: none; }
+  .tab .tab-icon { width: 12px; height: 12px; }
 
   /* Editor / Pages */
   .page {
