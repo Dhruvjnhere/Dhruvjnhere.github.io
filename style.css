@@ -900,7 +900,7 @@ textarea.form-input { min-height: 100px; resize: vertical; }
   -webkit-backdrop-filter: blur(20px) !important;
 }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE: TABLET (≤ 900px) ── */
 @media (max-width: 900px) {
   .app-grid {
     grid-template-columns: 48px 1fr;
@@ -921,6 +921,133 @@ textarea.form-input { min-height: 100px; resize: vertical; }
   .home-name { font-size: 48px; }
   .projects-grid, .skills-two-col, .contact-layout, .focus-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
+  .chat-panel { width: 300px; }
+}
+
+/* ── RESPONSIVE: MOBILE (≤ 600px) ── */
+@media (max-width: 600px) {
+  .app-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 36px 36px 1fr 0px 22px;
+    grid-template-areas:
+      "title"
+      "tabs"
+      "editor"
+      "terminal"
+      "status";
+  }
+  .app-grid.terminal-open {
+    grid-template-rows: 36px 36px 1fr 160px 22px;
+  }
+
+  /* Hide activity bar on mobile */
+  .activity-bar { display: none; }
+  .sidebar { display: none; }
+  .menubar { display: none; }
+
+  /* Title bar mobile */
+  .titlebar { font-size: 10px; padding: 0 8px; }
+  .titlebar-search { display: none; }
+  .mac-controls { left: 8px; }
+
+  /* Tabs bar mobile */
+  .tabs-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab { padding: 0 10px; font-size: 10px; min-width: max-content; }
+
+  /* Editor / Pages */
+  .page {
+    padding: 20px 14px;
+    font-size: 13px;
+  }
+  .editor { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Home section */
+  .home-greeting { font-size: 12px; }
+  .home-name { font-size: 32px; line-height: 1.1; }
+  .home-desc { font-size: 12px; }
+  .tagline { font-size: 12px; }
+  .typing-container { font-size: 0.85rem !important; }
+  .home-btns { flex-direction: column; gap: 8px; }
+  .home-btns button { width: 100%; justify-content: center; padding: 10px 16px; }
+
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0;
+  }
+  .stat { padding: 14px 10px; }
+  .stat-val { font-size: 22px; }
+  .stat-label { font-size: 8px; }
+
+  /* Socials */
+  .socials-row { flex-wrap: wrap; }
+  .social-chip { flex: 1; min-width: 80px; text-align: center; padding: 8px 10px; }
+
+  /* Section titles */
+  .section-title { font-size: 18px; }
+
+  /* About page */
+  .focus-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .focus-item { padding: 12px; font-size: 11px; }
+  .edu-card { padding: 12px; }
+  .edu-header { flex-direction: column; gap: 4px; }
+
+  /* Projects */
+  .projects-grid { grid-template-columns: 1fr !important; gap: 12px; }
+  .project-card { padding: 16px; }
+  .card-title { font-size: 16px; }
+  .card-desc { font-size: 12px; }
+
+  /* Skills */
+  .skills-two-col { grid-template-columns: 1fr !important; }
+
+  /* Experience */
+  .exp-card { padding: 14px; }
+  .exp-title { font-size: 15px !important; }
+  .exp-date { font-size: 10px; }
+  .exp-tags { gap: 4px; }
+  .exp-tag { font-size: 10px; padding: 2px 8px; }
+
+  /* Contact */
+  .contact-layout { grid-template-columns: 1fr !important; gap: 16px; }
+  .contact-link { padding: 12px; }
+  .contact-form input, .contact-form textarea { font-size: 14px; padding: 10px; }
+  .form-submit { width: 100%; padding: 12px; }
+
+  /* Chat panel - full width on mobile */
+  .chat-panel {
+    width: 100% !important;
+    top: 0;
+    bottom: 0;
+    border-left: none;
+    z-index: 200;
+  }
+  .chat-chips { grid-template-columns: 1fr; }
+  .chat-welcome-title { font-size: 15px; }
+
+  /* Terminal panel */
+  .terminal-body { font-size: 11px; }
+
+  /* Command palette */
+  .cmd-palette-overlay { padding: 10px; }
+  .cmd-palette-container { width: 100%; max-width: 100%; }
+
+  /* Status bar */
+  .statusbar { font-size: 10px; padding: 0 8px; }
+  .statusbar span { display: none; }
+  .statusbar .sb-left span:first-child,
+  .statusbar .sb-right span:last-child { display: inline; }
+
+  /* Settings */
+  .settings-overlay {
+    left: 10px !important;
+    right: 10px;
+    width: auto !important;
+    bottom: 30px !important;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb { font-size: 10px; padding: 4px 12px; }
 }
 
 /* ── ANIMATIONS ── */
