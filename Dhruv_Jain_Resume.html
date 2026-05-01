@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhruv Jain — Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1a1a2e;
+      background: #f8f9fa;
+      line-height: 1.5;
+      font-size: 13px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .resume {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 40px 48px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #1a1a2e;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .header-left h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #1a1a2e;
+    }
+    .header-left .subtitle {
+      font-size: 14px;
+      color: #555;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 12px;
+      color: #444;
+      line-height: 1.8;
+    }
+    .header-right a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .header-right a:hover { text-decoration: underline; }
+
+    /* Section */
+    .section {
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #1a1a2e;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* Summary */
+    .summary {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 6px 16px;
+    }
+    .skill-cat {
+      font-weight: 600;
+      color: #1a1a2e;
+      font-size: 12px;
+    }
+    .skill-list {
+      color: #444;
+      font-size: 12px;
+    }
+
+    /* Experience / Cert items */
+    .item {
+      margin-bottom: 12px;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .item-title {
+      font-weight: 600;
+      font-size: 13px;
+      color: #1a1a2e;
+    }
+    .item-date {
+      font-size: 11px;
+      color: #777;
+      white-space: nowrap;
+    }
+    .item-org {
+      font-size: 12px;
+      color: #555;
+      font-style: italic;
+    }
+    .item-desc {
+      font-size: 12px;
+      color: #444;
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+    .item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    .item-tag {
+      background: #f0f0f0;
+      padding: 1px 8px;
+      border-radius: 3px;
+      font-size: 10px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    /* Projects grid */
+    .projects-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .project {
+      padding: 10px 12px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+    }
+    .project-name {
+      font-weight: 600;
+      font-size: 12px;
+      color: #1a1a2e;
+    }
+    .project-desc {
+      font-size: 11px;
+      color: #555;
+      margin-top: 2px;
+    }
+    .project-tech {
+      font-size: 10px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* Education */
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    /* Interests */
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .interest-tag {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Print button */
+    .print-bar {
+      max-width: 800px;
+      margin: 0 auto 12px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .print-btn {
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .print-btn:hover { background: #2d2d5e; }
+    .back-btn {
+      background: transparent;
+      border: 1px solid #ccc;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      color: #555;
+    }
+    .back-btn:hover { border-color: #999; }
+
+    /* Print styles */
+    @media print {
+      body { background: #fff; }
+      .resume { box-shadow: none; margin: 0; padding: 24px 32px; }
+      .print-bar { display: none; }
+      .section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <button class="back-btn" onclick="goBack()">← Back to Portfolio</button>
+    <button class="print-btn" id="download-pdf">📄 Download as PDF</button>
+  </div>
+
+  <div class="resume" id="resume">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <h1>Dhruv Jain</h1>
+        <div class="subtitle">Cybersecurity Researcher &amp; B.Tech CSE Student</div>
+      </div>
+      <div class="header-right">
+        📧 <a href="mailto:dhruvjnhere@gmail.com">dhruvjnhere@gmail.com</a><br>
+        🔗 <a href="https://www.linkedin.com/in/dhruv-jain-5070b3314/" target="_blank">linkedin.com/in/dhruv-jain</a><br>
+        🐙 <a href="https://github.com/Dhruvjnhere" target="_blank">github.com/Dhruvjnhere</a>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="section">
+      <div class="section-title">Summary</div>
+      <p class="summary">
+        Cybersecurity-focused Computer Science student at GNA University (B.Tech CSE, 2024–2028) with hands-on experience in ethical hacking, vulnerability assessment, and digital forensics. Passionate about building secure digital systems, conducting security research, and developing full-stack web applications. Actively pursuing industry certifications to strengthen expertise in information security.
+      </p>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Bachelor of Technology — Computer Science &amp; Engineering</span>
+          <span class="item-date">2024 — 2028</span>
+        </div>
+        <div class="item-org">GNA University</div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+      <div class="section-title">Technical Skills</div>
+      <div class="skills-grid">
+        <span class="skill-cat">Cybersecurity</span>
+        <span class="skill-list">Network Security, Ethical Hacking, OSINT, Digital Forensics, Vulnerability Assessment</span>
+        <span class="skill-cat">Programming</span>
+        <span class="skill-list">C, C++, C#, JavaScript, Solidity (Smart Contracts)</span>
+        <span class="skill-cat">Web &amp; Tech</span>
+        <span class="skill-list">HTML, CSS, React, Node.js, Blockchain Development, Cloud Basics, Networking Fundamentals</span>
+        <span class="skill-cat">Tools</span>
+        <span class="skill-list">Git, VS Code, Supabase, Vercel, AWS Academy, Microsoft Office Suite</span>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section">
+      <div class="section-title">Projects</div>
+      <div class="projects-list">
+        <div class="project">
+          <div class="project-name">🛡️ PhishGuard Pro</div>
+          <div class="project-desc">Security awareness platform for phishing simulation, employee training, and campaign analytics.</div>
+          <div class="project-tech">React · Node.js · Supabase</div>
+        </div>
+        <div class="project">
+          <div class="project-name">🧠 CyberShield IQ</div>
+          <div class="project-desc">Cyber risk scoring engine with breach detection, password analysis, and automated security reports.</div>
+          <div class="project-tech">Next.js · Supabase · Vercel</div>
+        </div>
+        <div class="project">
+          <div class="project-name">💼 VS Code Portfolio</div>
+          <div class="project-desc">IDE-themed personal portfolio with integrated terminal, AI copilot, multiple themes, and command palette.</div>
+          <div class="project-tech">HTML · CSS · JavaScript</div>
+        </div>
+        <div class="project">
+          <div class="project-name">☕ Cafe Website</div>
+          <div class="project-desc">Responsive café landing page with menu, about section, and modern design.</div>
+          <div class="project-tech">HTML · CSS · JavaScript</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Freelance Web Developer</span>
+          <span class="item-date">2024 — Present</span>
+        </div>
+        <div class="item-desc">Building responsive web applications and landing pages for clients. Implementing modern UI/UX practices with focus on performance and accessibility.</div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="section">
+      <div class="section-title">Licenses &amp; Certifications</div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Introduction to Cybersecurity</span>
+          <span class="item-date">Jan 2026</span>
+        </div>
+        <div class="item-org">Cisco</div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">ISO/IEC 27001:2022 Information Security Associate</span>
+          <span class="item-date">Dec 2025</span>
+        </div>
+        <div class="item-org">SkillFront</div>
+        <div class="item-tags">
+          <span class="item-tag">ISO/IEC 27001:2022</span>
+          <span class="item-tag">Security Policies</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">ISC2 Candidate</span>
+          <span class="item-date">Nov 2025</span>
+        </div>
+        <div class="item-org">ISC2</div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">AWS Academy Graduate — Data Center Technician</span>
+          <span class="item-date">Nov 2024</span>
+        </div>
+        <div class="item-org">Amazon Web Services (AWS)</div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Diploma in Office Automation &amp; Programming</span>
+          <span class="item-date">Jul 2024</span>
+        </div>
+        <div class="item-org">NICE Computers</div>
+        <div class="item-tags">
+          <span class="item-tag">C Programming</span>
+          <span class="item-tag">Microsoft Office</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH INTERESTS -->
+    <div class="section">
+      <div class="section-title">Research Interests</div>
+      <div class="interests-list">
+        <span class="interest-tag">Cyber Threat Intelligence</span>
+        <span class="interest-tag">Digital Forensics</span>
+        <span class="interest-tag">Blockchain Security</span>
+        <span class="interest-tag">AI in Cybersecurity</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- html2pdf library for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function goBack() {
+      // Try to go back, or redirect to portfolio root
+      if (window.opener || document.referrer.includes('localhost') || document.referrer.includes('github.io')) {
+        window.close();
+      }
+      // Fallback: navigate to portfolio
+      window.location.href = './index.html';
+    }
+
+    document.getElementById('download-pdf').addEventListener('click', function() {
+      const btn = this;
+      btn.textContent = '⏳ Generating PDF...';
+      btn.disabled = true;
+
+      const element = document.getElementById('resume');
+      const opt = {
+        margin:       [10, 10, 10, 10],
+        filename:     'Dhruv_Jain_Resume.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        btn.textContent = '✅ Downloaded!';
+        setTimeout(() => {
+          btn.textContent = '📄 Download as PDF';
+          btn.disabled = false;
+        }, 2000);
+      }).catch(() => {
+        // Fallback to print dialog
+        btn.textContent = '📄 Download as PDF';
+        btn.disabled = false;
+        window.print();
+      });
+    });
+  </script>
+
+</body>
+</html>
