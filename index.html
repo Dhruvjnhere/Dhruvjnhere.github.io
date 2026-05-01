@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhruv — Portfolio</title>
+  <meta name="description" content="Dhruv's developer portfolio — VS Code themed personal website showcasing projects, skills, and experience.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-grid">
+
+  <!-- TITLE BAR -->
+  <div class="titlebar">
+    <div class="mac-controls">
+      <div class="mac-btn close-btn"></div>
+      <div class="mac-btn min-btn"></div>
+      <div class="mac-btn max-btn"></div>
+    </div>
+    <div class="titlebar-search" id="titlebar-search">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span>dhruv : portfolio</span>
+      <div class="titlebar-kbd">
+        <span class="kbd">Ctrl</span><span class="kbd">P</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU BAR -->
+  <div class="menubar">
+    <div class="menubar-item">File</div>
+    <div class="menubar-item">Edit</div>
+    <div class="menubar-item">View</div>
+    <div class="menubar-item">Go</div>
+    <div class="menubar-item">Run</div>
+    <div class="menubar-item">Terminal</div>
+    <div class="menubar-item">Help</div>
+    <div class="menubar-item" id="menu-copilot">Copilot</div>
+  </div>
+
+  <!-- ACTIVITY BAR -->
+  <div class="activity-bar">
+    <div class="ab-icon active" id="ab-explorer" title="Explorer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+    <div class="ab-icon" id="ab-search" title="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </div>
+    <div class="ab-icon" id="ab-source-control" title="Source Control">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"></circle><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="12" r="2.5"></circle><line x1="6" y1="8.5" x2="6" y2="15.5"></line><path d="M6 12h9.5"></path></svg>
+      <div class="ab-badge"></div>
+    </div>
+    <div class="ab-icon" id="ab-download" title="Download Resume">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+    </div>
+    <div class="ab-icon ai-icon" id="ai-chat-btn" title="Copilot Chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7 7 2-7 2-2 7-2-7-7-2 7-2z"></path></svg>
+    </div>
+    <div class="ab-spacer"></div>
+    <div class="ab-icon ab-bottom" id="settings-btn" title="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+    </div>
+  </div>
+
+  <!-- TABS BAR -->
+  <div class="tabs-bar">
+    <div class="tab active" data-page="home">
+      <span class="tab-icon svg-icon"><svg viewBox="-11.5 -10.2 23 20.4"><circle cx="0" cy="0" r="2.05" fill="#61dafb"/><g stroke="#61dafb" stroke-width="1" fill="none"><ellipse rx="11" ry="4.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)"/><ellipse rx="11" ry="4.2" transform="rotate(120)"/></g></svg></span> home.jsx <span class="close">×</span>
+    </div>
+    <div class="tab" data-page="about">
+      <span class="tab-icon svg-icon"><svg viewBox="0 0 24 24"><path fill="#E34F26" d="M2 2h20l-1.8 18.5L12 23.5l-8.2-3L2 2z"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">5</text></svg></span> about.html <span class="close">×</span>
+    </div>
+    <div class="tab" data-page="projects">
+      <span class="tab-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#4B4B4B"/><text x="12" y="16" font-family="monospace" font-size="13" font-weight="bold" fill="#F7DF1E" text-anchor="middle">{}</text></svg></span> projects.json <span class="close">×</span>
+    </div>
+    <div class="tab" data-page="skills">
+      <span class="tab-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#3178C6"/><text x="12" y="17" font-family="Arial" font-size="11" font-weight="bold" fill="#FFF" text-anchor="middle">TS</text></svg></span> skills.ts <span class="close">×</span>
+    </div>
+    <div class="tab" data-page="experience">
+      <span class="tab-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#F7DF1E"/><text x="12" y="17" font-family="Arial" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">JS</text></svg></span> experience.js <span class="close">×</span>
+    </div>
+    <div class="tab" data-page="contact">
+      <span class="tab-icon svg-icon"><svg viewBox="0 0 24 24"><path fill="#1572B6" d="M2 2h20l-1.8 18.5L12 23.5l-8.2-3L2 2z"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">3</text></svg></span> contact.css <span class="close">×</span>
+    </div>
+  </div>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-title">Portfolio</div>
+    
+    <div class="sidebar-files">
+      <div class="file-item active" data-page="home">
+        <span class="file-icon svg-icon"><svg viewBox="-11.5 -10.2 23 20.4"><circle cx="0" cy="0" r="2.05" fill="#61dafb"/><g stroke="#61dafb" stroke-width="1" fill="none"><ellipse rx="11" ry="4.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)"/><ellipse rx="11" ry="4.2" transform="rotate(120)"/></g></svg></span> home.jsx
+      </div>
+      <div class="file-item" data-page="about">
+        <span class="file-icon svg-icon"><svg viewBox="0 0 24 24"><path fill="#E34F26" d="M2 2h20l-1.8 18.5L12 23.5l-8.2-3L2 2z"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">5</text></svg></span> about.html
+      </div>
+      <div class="file-item" data-page="projects">
+        <span class="file-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#4B4B4B"/><text x="12" y="16" font-family="monospace" font-size="13" font-weight="bold" fill="#F7DF1E" text-anchor="middle">{}</text></svg></span> projects.json
+      </div>
+      <div class="file-item" data-page="skills">
+        <span class="file-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#3178C6"/><text x="12" y="17" font-family="Arial" font-size="11" font-weight="bold" fill="#FFF" text-anchor="middle">TS</text></svg></span> skills.ts
+      </div>
+      <div class="file-item" data-page="experience">
+        <span class="file-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#F7DF1E"/><text x="12" y="17" font-family="Arial" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">JS</text></svg></span> experience.js
+      </div>
+      <div class="file-item" data-page="contact">
+        <span class="file-icon svg-icon"><svg viewBox="0 0 24 24"><path fill="#1572B6" d="M2 2h20l-1.8 18.5L12 23.5l-8.2-3L2 2z"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">3</text></svg></span> contact.css
+      </div>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="copilot-btn" id="sidebar-copilot-btn">
+        <div class="cp-left">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#cba6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7 7 2-7 2-2 7-2-7-7-2 7-2z"/></svg>
+          <span>Dhruv's Copilot</span>
+        </div>
+        <span class="cp-badge">AI</span>
+      </div>
+      
+      <div class="sidebar-git">
+        <div class="sg-left">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8.5 7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8.5 14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-6-7.5v7l-3-3m3 3l3-3"/></svg>
+          <span>main</span>
+        </div>
+        <div class="sg-right">
+          <span class="sg-up" style="color:var(--blue)">↑1</span>
+          <span class="sg-down" style="color:var(--orange)">✦3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDITOR -->
+  <div class="editor">
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <span>portfolio</span> <span class="sep">›</span>
+      <span>src</span> <span class="sep">›</span>
+      <span id="breadcrumb-file">home.jsx</span>
+    </div>
+
+    <!-- ═══ HOME ═══ -->
+    <div class="page active" id="page-home">
+      <div class="reveal">
+        <p class="home-greeting">// Hey there, welcome to my space</p>
+        <h1 class="home-name">Dhruv<span class="last"> .</span></h1>
+        <div class="badges">
+          <span class="badge"><span class="badge-dot" style="background:var(--green)"></span> Full-Stack Developer</span>
+          <span class="badge"><span class="badge-dot" style="background:var(--blue)"></span> CS Student</span>
+          <span class="badge"><span class="badge-dot" style="background:var(--pink)"></span> Tech Enthusiast</span>
+        </div>
+        <p class="tagline">Building things that live on the internet.</p>
+        <p class="home-desc">
+          I'm a passionate developer who loves crafting <strong>clean, performant</strong> web experiences.
+          Currently pursuing my degree while working on side projects and exploring new technologies.
+        </p>
+        <div class="home-btns">
+          <button class="btn-primary" onclick="navigateTo('projects')">⚡ View Projects</button>
+          <button class="btn-outline" onclick="navigateTo('contact')">💬 Get In Touch</button>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="stats-grid">
+          <div class="stat"><div class="stat-val" data-count="10">0</div><div class="stat-label">Projects</div></div>
+          <div class="stat"><div class="stat-val" data-count="5">0</div><div class="stat-label">Technologies</div></div>
+          <div class="stat"><div class="stat-val" data-count="2">0</div><div class="stat-label">Years Coding</div></div>
+          <div class="stat"><div class="stat-val" data-count="500">0</div><div class="stat-label">Commits</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="socials-row">
+          <a class="social-chip" href="https://github.com/Dhruvjnhere" target="_blank">⚙ GitHub</a>
+          <a class="social-chip" href="https://linkedin.com/in/" target="_blank">🔗 LinkedIn</a>
+          <a class="social-chip" href="mailto:dhruvjnhere@gmail.com">✉ Email</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ABOUT ═══ -->
+    <div class="page" id="page-about">
+      <div class="reveal">
+        <h2 class="section-title">// About Me</h2>
+        <p class="home-desc">
+          I'm a Computer Science student with a passion for building impactful digital solutions.
+          I love exploring the intersection of design and technology, always eager to learn and grow.
+        </p>
+      </div>
+      <div class="reveal">
+        <h2 class="section-title" style="margin-top:32px;">Current Focus</h2>
+        <div class="focus-grid">
+          <div class="focus-item"><span class="focus-emoji">🌐</span><div>Full-Stack Web Development — React, Node.js, and modern frameworks</div></div>
+          <div class="focus-item"><span class="focus-emoji">🔒</span><div>Cybersecurity — Security awareness platforms & ethical hacking</div></div>
+          <div class="focus-item"><span class="focus-emoji">📱</span><div>UI/UX Design — Creating intuitive, accessible interfaces</div></div>
+          <div class="focus-item"><span class="focus-emoji">☁️</span><div>Cloud & DevOps — Deploying scalable applications</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-card">
+          <div class="edu-header">
+            <span class="edu-school">Bachelor of Technology — Computer Science</span>
+            <span class="edu-year">2023 — Present</span>
+          </div>
+          <div class="edu-uni">University</div>
+          <div class="edu-degree">B.Tech CSE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROJECTS ═══ -->
+    <div class="page" id="page-projects">
+      <div class="reveal">
+        <h2 class="section-title">// Projects</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal" style="--card-accent:var(--pink)">
+          <div class="card-top"><span class="card-emoji">🛡️</span><a class="gh-link" href="https://github.com/Dhruvjnhere" target="_blank">↗ Repo</a></div>
+          <div class="card-cats">Security</div>
+          <div class="card-title">PhishGuard Pro</div>
+          <div class="card-desc">A security awareness platform for phishing simulation, employee training, and campaign analytics.</div>
+          <div class="card-tags"><span class="card-tag">React</span><span class="card-tag">Node.js</span><span class="card-tag">Supabase</span></div>
+        </div>
+        <div class="project-card reveal" style="--card-accent:var(--green)">
+          <div class="card-top"><span class="card-emoji">🧠</span><a class="gh-link" href="https://github.com/Dhruvjnhere" target="_blank">↗ Repo</a></div>
+          <div class="card-cats">Platform</div>
+          <div class="card-title">CyberShield IQ</div>
+          <div class="card-desc">Cyber risk scoring engine with breach detection, password analysis, gamification, and automated reports.</div>
+          <div class="card-tags"><span class="card-tag">Next.js</span><span class="card-tag">Supabase</span><span class="card-tag">Vercel</span></div>
+        </div>
+        <div class="project-card reveal" style="--card-accent:var(--blue)">
+          <div class="card-top"><span class="card-emoji">💼</span><a class="gh-link" href="https://github.com/Dhruvjnhere" target="_blank">↗ Repo</a></div>
+          <div class="card-cats">Web</div>
+          <div class="card-title">Portfolio Website</div>
+          <div class="card-desc">This very portfolio — a VS Code-themed personal site built with vanilla HTML, CSS, and JavaScript.</div>
+          <div class="card-tags"><span class="card-tag">HTML</span><span class="card-tag">CSS</span><span class="card-tag">JavaScript</span></div>
+        </div>
+        <div class="project-card reveal" style="--card-accent:var(--orange)">
+          <div class="card-top"><span class="card-emoji">☕</span><a class="gh-link" href="https://github.com/Dhruvjnhere" target="_blank">↗ Repo</a></div>
+          <div class="card-cats">Frontend</div>
+          <div class="card-title">Cafe Website</div>
+          <div class="card-desc">A beautifully designed café landing page with menu, about section, and responsive layout.</div>
+          <div class="card-tags"><span class="card-tag">HTML</span><span class="card-tag">CSS</span><span class="card-tag">JS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SKILLS ═══ -->
+    <div class="page" id="page-skills">
+      <div class="reveal">
+        <h2 class="section-title">// Skills</h2>
+      </div>
+      <div class="skills-two-col reveal">
+        <div>
+          <h3 class="skill-group-title">Frontend</h3>
+          <div class="skill-row"><span class="skill-name">HTML / CSS</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--orange)" data-w="90%"></div></div><span class="skill-pct">90%</span></div>
+          <div class="skill-row"><span class="skill-name">JavaScript</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--yellow)" data-w="80%"></div></div><span class="skill-pct">80%</span></div>
+          <div class="skill-row"><span class="skill-name">React</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--blue)" data-w="75%"></div></div><span class="skill-pct">75%</span></div>
+          <div class="skill-row"><span class="skill-name">Next.js</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--bright)" data-w="65%"></div></div><span class="skill-pct">65%</span></div>
+        </div>
+        <div>
+          <h3 class="skill-group-title">Backend & Tools</h3>
+          <div class="skill-row"><span class="skill-name">Node.js</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--green)" data-w="70%"></div></div><span class="skill-pct">70%</span></div>
+          <div class="skill-row"><span class="skill-name">Supabase</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--green)" data-w="65%"></div></div><span class="skill-pct">65%</span></div>
+          <div class="skill-row"><span class="skill-name">Git / GitHub</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--pink)" data-w="85%"></div></div><span class="skill-pct">85%</span></div>
+          <div class="skill-row"><span class="skill-name">Java</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:0%;background:var(--red)" data-w="70%"></div></div><span class="skill-pct">70%</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 class="familiar-title">Also Familiar With</h3>
+        <div class="familiar-tags">
+          <span class="familiar-tag">Python</span>
+          <span class="familiar-tag">C++</span>
+          <span class="familiar-tag">SQL</span>
+          <span class="familiar-tag">Firebase</span>
+          <span class="familiar-tag">Vercel</span>
+          <span class="familiar-tag">Figma</span>
+          <span class="familiar-tag">Linux</span>
+          <span class="familiar-tag">Docker</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ EXPERIENCE ═══ -->
+    <div class="page" id="page-experience">
+      <div class="reveal">
+        <h2 class="section-title">// Experience</h2>
+      </div>
+      <div class="reveal">
+        <div class="exp-card">
+          <div class="exp-date">2024 — Present</div>
+          <div class="exp-title">Freelance Developer</div>
+          <div class="exp-company">Self-Employed</div>
+          <div class="exp-desc">Building web applications and landing pages for clients. Focused on clean UI, performance, and responsive design across multiple projects.</div>
+          <div class="exp-tags"><span class="exp-tag">React</span><span class="exp-tag">Node.js</span><span class="exp-tag">CSS</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="exp-card">
+          <div class="exp-date">2023 — Present</div>
+          <div class="exp-title">CS Student</div>
+          <div class="exp-company">University</div>
+          <div class="exp-desc">Pursuing B.Tech in Computer Science. Building projects in cybersecurity, web development, and software engineering. Active participant in hackathons and coding events.</div>
+          <div class="exp-tags"><span class="exp-tag">Java</span><span class="exp-tag">DSA</span><span class="exp-tag">Web Dev</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CONTACT ═══ -->
+    <div class="page" id="page-contact">
+      <div class="reveal">
+        <h2 class="section-title">// Contact</h2>
+      </div>
+      <div class="contact-layout reveal">
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:dhruvjnhere@gmail.com">
+            <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div><div class="cl-label">Email</div><div class="cl-value">dhruvjnhere@gmail.com</div></div>
+            <span class="cl-arrow">→</span>
+          </a>
+          <a class="contact-link" href="https://github.com/Dhruvjnhere" target="_blank">
+            <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg></div>
+            <div><div class="cl-label">GitHub</div><div class="cl-value">Dhruvjnhere</div></div>
+            <span class="cl-arrow">→</span>
+          </a>
+          <a class="contact-link" href="https://linkedin.com/in/" target="_blank">
+            <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></div>
+            <div><div class="cl-label">LinkedIn</div><div class="cl-value">Connect with me</div></div>
+            <span class="cl-arrow">→</span>
+          </a>
+        </div>
+        <div>
+          <form class="contact-form" id="contact-form">
+            <div>
+              <label class="form-label">Name <span class="req">*</span></label>
+              <input class="form-input" type="text" placeholder="Your name" required>
+            </div>
+            <div>
+              <label class="form-label">Email <span class="req">*</span></label>
+              <input class="form-input" type="email" placeholder="you@example.com" required>
+            </div>
+            <div>
+              <label class="form-label">Message <span class="req">*</span></label>
+              <textarea class="form-input" placeholder="Write your message..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message →</button>
+            <p class="form-note">I'll get back to you as soon as possible.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /editor -->
+
+  <!-- STATUS BAR -->
+  <div class="statusbar">
+    <div class="statusbar-left">
+      <span class="status-item"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg> 0</span>
+      <span class="status-item"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8.5 7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8.5 14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm0 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-6-7.5v7l-3-3m3 3l3-3"/></svg> main</span>
+      <span class="status-item"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg> Dhruv's Portfolio</span>
+    </div>
+    <div class="statusbar-right">
+      <span class="status-item">UTF-8</span>
+      <span class="status-item">JavaScript</span>
+      <span class="status-item">Ln 1, Col 1</span>
+    </div>
+  </div>
+
+</div><!-- /app-grid -->
+
+<div id="glow-cursor"></div>
+
+<!-- COMMAND PALETTE OVERLAY -->
+<div class="cmd-palette-overlay" id="cmd-palette">
+  <div class="cmd-palette-container" id="cmd-palette-container">
+    <div class="cmd-palette-header">
+      <span class="cmd-prompt">&gt;</span>
+      <input type="text" id="cmd-input" placeholder="Go to file or run command..." autocomplete="off">
+      <span class="kbd">Esc</span>
+    </div>
+    <div class="cmd-palette-list" id="cmd-list">
+      <div class="cmd-item" data-action="chat">
+        <div class="cmd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#cba6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7 7 2-7 2-2 7-2-7-7-2 7-2z"/></svg></div>
+        <div class="cmd-label" style="color:var(--purple)">Open Dhruv's Copilot</div>
+        <div class="cmd-shortcut">Ctrl+Shift+C</div>
+      </div>
+      
+      <div class="cmd-category">FILES</div>
+      
+      <div class="cmd-item active" data-page="home">
+        <div class="cmd-icon svg-icon"><svg viewBox="-11.5 -10.2 23 20.4"><circle cx="0" cy="0" r="2.05" fill="#61dafb"/><g stroke="#61dafb" stroke-width="1" fill="none"><ellipse rx="11" ry="4.2"/><ellipse rx="11" ry="4.2" transform="rotate(60)"/><ellipse rx="11" ry="4.2" transform="rotate(120)"/></g></svg></div>
+        <div class="cmd-label">home.jsx</div>
+        <div class="cmd-path">src/</div>
+      </div>
+      <div class="cmd-item" data-page="about">
+        <div class="cmd-icon svg-icon"><svg viewBox="0 0 24 24"><path fill="#E34F26" d="M2 2h20l-1.8 18.5L12 23.5l-8.2-3L2 2z"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">5</text></svg></div>
+        <div class="cmd-label">about.html</div>
+        <div class="cmd-path">src/</div>
+      </div>
+      <div class="cmd-item" data-page="projects">
+        <div class="cmd-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#4B4B4B"/><text x="12" y="16" font-family="monospace" font-size="13" font-weight="bold" fill="#F7DF1E" text-anchor="middle">{}</text></svg></div>
+        <div class="cmd-label">projects.json</div>
+        <div class="cmd-path">src/</div>
+      </div>
+      <div class="cmd-item" data-page="skills">
+        <div class="cmd-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#3178C6"/><text x="12" y="17" font-family="Arial" font-size="11" font-weight="bold" fill="#FFF" text-anchor="middle">TS</text></svg></div>
+        <div class="cmd-label">skills.ts</div>
+        <div class="cmd-path">data/</div>
+      </div>
+      <div class="cmd-item" data-page="experience">
+        <div class="cmd-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#F7DF1E"/><text x="12" y="17" font-family="Arial" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">JS</text></svg></div>
+        <div class="cmd-label">experience.js</div>
+        <div class="cmd-path">src/</div>
+      </div>
+      <div class="cmd-item" data-page="contact">
+        <div class="cmd-icon svg-icon"><svg viewBox="0 0 24 24"><path fill="#1572B6" d="M2 2h20l-1.8 18.5L12 23.5l-8.2-3L2 2z"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">3</text></svg></div>
+        <div class="cmd-label">contact.css</div>
+        <div class="cmd-path">src/</div>
+      </div>
+      <div class="cmd-item" data-action="readme">
+        <div class="cmd-icon svg-icon"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="3" fill="#4A4A4A"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">M⬇</text></svg></div>
+        <div class="cmd-label">README.md</div>
+        <div class="cmd-path">./</div>
+      </div>
+      <div class="cmd-item" data-action="resume">
+        <div class="cmd-icon svg-icon"><svg viewBox="0 0 24 24"><path fill="#E34F26" d="M2 2h20l-1.8 18.5L12 23.5l-8.2-3L2 2z"/><text x="12" y="16" font-family="Arial" font-size="10" font-weight="bold" fill="#FFF" text-anchor="middle">PDF</text></svg></div>
+        <div class="cmd-label">Dhruv_Resume.pdf</div>
+        <div class="cmd-path">./</div>
+      </div>
+    </div>
+    <div class="cmd-palette-footer">
+      <div class="cpf-left">
+        <span>↑↓ navigate</span> <span class="dot">·</span> <span>↵ open</span> <span class="dot">·</span> <span>Esc close</span>
+      </div>
+      <div class="cpf-right">
+        Tip: type "copilot" to open AI chat
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS OVERLAY -->
+<div class="settings-overlay" id="settings-overlay">
+  <div class="settings-header">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+    SETTINGS
+  </div>
+  
+  <div class="settings-title">COLOR THEME</div>
+  <div class="settings-section">
+    <div class="settings-item active" data-theme="default">
+      <div class="theme-dot" style="background:#007acc"></div>
+      <div class="label">💜 Aahana Dark</div>
+    </div>
+    <div class="settings-item" data-theme="rose-pine">
+      <div class="theme-dot" style="background:#ebbcba"></div>
+      <div class="label">🌸 Rosé Pine</div>
+    </div>
+    <div class="settings-item" data-theme="tokyo-night">
+      <div class="theme-dot" style="background:#7aa2f7"></div>
+      <div class="label">🌃 Tokyo Night</div>
+    </div>
+    <div class="settings-item" data-theme="catppuccin">
+      <div class="theme-dot" style="background:#cba6f7"></div>
+      <div class="label">🐱 Catppuccin</div>
+    </div>
+    <div class="settings-item" data-theme="nord">
+      <div class="theme-dot" style="background:#88c0d0"></div>
+      <div class="label">🧊 Nord</div>
+      <span class="shortcut checkmark">✓</span>
+    </div>
+    <div class="settings-item" data-theme="gruvbox">
+      <div class="theme-dot" style="background:#fabd2f"></div>
+      <div class="label">🔥 Gruvbox</div>
+    </div>
+  </div>
+
+  <div class="settings-title">QUICK ACTIONS</div>
+  <div class="settings-section">
+    <div class="settings-item" id="settings-cmd-palette">
+      <span class="label"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Command Palette</span>
+      <span class="shortcut">Ctrl+P</span>
+    </div>
+    <div class="settings-item">
+      <span class="label"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>Toggle Terminal</span>
+      <span class="shortcut">Ctrl+`</span>
+    </div>
+    <div class="settings-item" id="open-chat-btn">
+      <span class="label"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#cba6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><path d="M12 2l2 7 7 2-7 2-2 7-2-7-7-2 7-2z"/></svg>Copilot Chat</span>
+    </div>
+    <div class="settings-item">
+      <span class="label"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download Resume</span>
+    </div>
+    <div class="settings-item" id="fullscreen-btn">
+      <span class="label"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>Toggle Fullscreen</span>
+      <span class="shortcut">F11</span>
+    </div>
+  </div>
+
+  <div class="settings-title">KEYBOARD SHORTCUTS</div>
+  <div class="settings-section">
+    <div class="settings-item">
+      <span class="kbd">Ctrl P</span>
+      <span class="label" style="color:var(--dim); font-size:10px;">Go to file (command palette)</span>
+    </div>
+    <div class="settings-item">
+      <span class="kbd">Ctrl `</span>
+      <span class="label" style="color:var(--dim); font-size:10px;">Toggle terminal</span>
+    </div>
+    <div class="settings-item">
+      <span class="kbd">Ctrl B</span>
+      <span class="label" style="color:var(--dim); font-size:10px;">Toggle sidebar</span>
+    </div>
+    <div class="settings-item">
+      <span class="kbd">Esc</span>
+      <span class="label" style="color:var(--dim); font-size:10px;">Close overlay</span>
+    </div>
+  </div>
+</div>
+
+<!-- AI CHAT PANEL -->
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-header">
+    <span>Copilot Chat</span>
+    <span style="cursor:pointer" id="close-chat">×</span>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg bot">Hello Dhruv! I'm your AI assistant. How can I help you with your portfolio today? ✨</div>
+  </div>
+  <div class="chat-input-container">
+    <input type="text" class="chat-input" id="chat-input" placeholder="Ask Copilot...">
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
