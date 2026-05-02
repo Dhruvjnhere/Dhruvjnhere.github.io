@@ -101,17 +101,47 @@ document.querySelectorAll('.tab .close').forEach(closeBtn => {
   });
 });
 
-// ── Contact Form ──
-document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+// ── Contact Form (Web3Forms) ──
+document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = e.target.querySelector('.form-submit');
-  btn.textContent = '✓ Message Sent!';
-  btn.style.background = '#4ec9b0';
+  const originalText = btn.textContent;
+
+  // Show loading state
+  btn.textContent = '⏳ Sending...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+
+  try {
+    const formData = new FormData(e.target);
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
+
+    if (result.success) {
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = '#4ec9b0';
+      btn.style.opacity = '1';
+      e.target.reset();
+    } else {
+      btn.textContent = '✗ Failed to send';
+      btn.style.background = '#f44747';
+      btn.style.opacity = '1';
+    }
+  } catch (err) {
+    btn.textContent = '✗ Network error';
+    btn.style.background = '#f44747';
+    btn.style.opacity = '1';
+  }
+
   setTimeout(() => {
-    btn.textContent = 'Send Message →';
+    btn.textContent = originalText;
     btn.style.background = '';
-    e.target.reset();
-  }, 2500);
+    btn.style.opacity = '';
+    btn.disabled = false;
+  }, 3000);
 });
 
 // ── Settings Toggle ──
