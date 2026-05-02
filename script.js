@@ -759,12 +759,22 @@ function typeEffect() {
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
-  // Load saved theme
+  // Load saved theme — default to hacker theme on mobile
   const savedTheme = localStorage.getItem('portfolio-theme');
+  const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+    || (window.innerWidth <= 768);
+
   if (savedTheme && savedTheme !== 'default') {
+    // User has explicitly chosen a theme — respect it
     document.body.classList.add('theme-' + savedTheme);
     document.querySelectorAll('[data-theme]').forEach(i => {
       i.classList.toggle('active', i.dataset.theme === savedTheme);
+    });
+  } else if (isMobile && !savedTheme) {
+    // First-time mobile visitor — auto-apply hacker theme
+    document.body.classList.add('theme-hacker');
+    document.querySelectorAll('[data-theme]').forEach(i => {
+      i.classList.toggle('active', i.dataset.theme === 'hacker');
     });
   }
 
