@@ -815,6 +815,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Observe all reveals
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── Animated Favicon ──
+  (function animateFavicon() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    const link = document.querySelector('link[rel="icon"]') || document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/png';
+    if (!link.parentNode) document.head.appendChild(link);
+
+    let frame = 0;
+
+    function draw() {
+      const t = frame * 0.03;
+      ctx.clearRect(0, 0, 64, 64);
+
+      // Rotating gradient colors
+      const hue1 = (frame * 1.5) % 360;
+      const hue2 = (hue1 + 120) % 360;
+      const color1 = `hsl(${hue1}, 80%, 55%)`;
+      const color2 = `hsl(${hue2}, 80%, 55%)`;
+
+      // Shield gradient
+      const grad = ctx.createLinearGradient(0, 0, 64, 64);
+      grad.addColorStop(0, color1);
+      grad.addColorStop(1, color2);
+
+      // Draw shield shape
+      ctx.beginPath();
+      ctx.moveTo(32, 4);
+      ctx.lineTo(56, 14);
+      ctx.lineTo(56, 30);
+      ctx.quadraticCurveTo(56, 50, 32, 60);
+      ctx.quadraticCurveTo(8, 50, 8, 30);
+      ctx.lineTo(8, 14);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.globalAlpha = 0.9;
+      ctx.fill();
+
+      // Inner dark shield
+      ctx.beginPath();
+      ctx.moveTo(32, 8);
+      ctx.lineTo(52, 16.5);
+      ctx.lineTo(52, 30);
+      ctx.quadraticCurveTo(52, 47, 32, 56);
+      ctx.quadraticCurveTo(12, 47, 12, 30);
+      ctx.lineTo(12, 16.5);
+      ctx.closePath();
+      ctx.fillStyle = '#1e1e1e';
+      ctx.globalAlpha = 0.88;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // Code brackets </> with gradient
+      const textGrad = ctx.createLinearGradient(16, 24, 48, 44);
+      textGrad.addColorStop(0, color1);
+      textGrad.addColorStop(1, color2);
+      ctx.fillStyle = textGrad;
+      ctx.font = 'bold 19px Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('</>', 32, 37);
+
+      // Pulsing glow dot at top
+      const pulse = 0.5 + 0.5 * Math.sin(t * 3);
+      const dotRadius = 2 + pulse * 1.5;
+      const dotGlow = ctx.createRadialGradient(32, 14, 0, 32, 14, dotRadius * 3);
+      dotGlow.addColorStop(0, `hsla(${hue1}, 100%, 70%, ${0.6 + pulse * 0.4})`);
+      dotGlow.addColorStop(1, 'transparent');
+      ctx.fillStyle = dotGlow;
+      ctx.fillRect(20, 4, 24, 20);
+
+      ctx.beginPath();
+      ctx.arc(32, 14, dotRadius, 0, Math.PI * 2);
+      ctx.fillStyle = `hsl(${hue1}, 100%, 75%)`;
+      ctx.fill();
+
+      // Update favicon
+      link.href = canvas.toDataURL('image/png');
+      frame++;
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  })();
 });
 
 // ── Mobile Sidebar Drawer ──
