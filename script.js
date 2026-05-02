@@ -816,7 +816,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Observe all reveals
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // ── Animated Favicon ──
+  // ── 3D Animated Favicon ──
   (function animateFavicon() {
     const canvas = document.createElement('canvas');
     canvas.width = 64;
@@ -828,79 +828,100 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!link.parentNode) document.head.appendChild(link);
 
     let frame = 0;
+    const S = 64, cx = S/2, cy = S/2;
+
+    const cubeVerts = [
+      [-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],
+      [-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]
+    ];
+    const cubeFaces = [
+      [0,1,2,3],[4,5,6,7],[0,1,5,4],[2,3,7,6],[0,3,7,4],[1,2,6,5]
+    ];
+
+    function rotY(v,a){const c=Math.cos(a),s=Math.sin(a);return[v[0]*c+v[2]*s,v[1],-v[0]*s+v[2]*c];}
+    function rotX(v,a){const c=Math.cos(a),s=Math.sin(a);return[v[0],v[1]*c-v[2]*s,v[1]*s+v[2]*c];}
+    function proj(v){const f=3.5,z=v[2]+f,sc=(f/z)*18;return[cx+v[0]*sc,cy+v[1]*sc,z];}
 
     function draw() {
-      const t = frame * 0.03;
-      ctx.clearRect(0, 0, 64, 64);
+      const t = frame * 0.025;
+      ctx.clearRect(0, 0, S, S);
+      const hue = (frame * 1.2) % 360;
 
-      // Rotating gradient colors
-      const hue1 = (frame * 1.5) % 360;
-      const hue2 = (hue1 + 120) % 360;
-      const color1 = `hsl(${hue1}, 80%, 55%)`;
-      const color2 = `hsl(${hue2}, 80%, 55%)`;
+      const rot = cubeVerts.map(v => rotX(rotY(v, t), t*0.6+0.4));
+      const pro = rot.map(v => proj(v));
 
-      // Shield gradient
-      const grad = ctx.createLinearGradient(0, 0, 64, 64);
-      grad.addColorStop(0, color1);
-      grad.addColorStop(1, color2);
-
-      // Draw shield shape
+      // Shadow
       ctx.beginPath();
-      ctx.moveTo(32, 4);
-      ctx.lineTo(56, 14);
-      ctx.lineTo(56, 30);
-      ctx.quadraticCurveTo(56, 50, 32, 60);
-      ctx.quadraticCurveTo(8, 50, 8, 30);
-      ctx.lineTo(8, 14);
-      ctx.closePath();
-      ctx.fillStyle = grad;
-      ctx.globalAlpha = 0.9;
+      ctx.ellipse(cx, cy+26, 14*(0.6+0.1*Math.sin(t*2)), 4*(0.6+0.1*Math.sin(t*2)), 0, 0, Math.PI*2);
+      const sg = ctx.createRadialGradient(cx, cy+26, 0, cx, cy+26, 14);
+      sg.addColorStop(0, 'rgba(0,0,0,0.35)');
+      sg.addColorStop(1, 'transparent');
+      ctx.fillStyle = sg;
       ctx.fill();
 
-      // Inner dark shield
-      ctx.beginPath();
-      ctx.moveTo(32, 8);
-      ctx.lineTo(52, 16.5);
-      ctx.lineTo(52, 30);
-      ctx.quadraticCurveTo(52, 47, 32, 56);
-      ctx.quadraticCurveTo(12, 47, 12, 30);
-      ctx.lineTo(12, 16.5);
-      ctx.closePath();
-      ctx.fillStyle = '#1e1e1e';
-      ctx.globalAlpha = 0.88;
-      ctx.fill();
-      ctx.globalAlpha = 1;
+      // Sort faces by avg z
+      const fd = cubeFaces.map((face, fi) => {
+        const az = face.reduce((s,i) => s+rot[i][2], 0)/4;
+        const v0=rot[face[0]], v1=rot[face[1]], v2=rot[face[2]];
+        const e1=[v1[0]-v0[0],v1[1]-v0[1],v1[2]-v0[2]];
+        const e2=[v2[0]-v0[0],v2[1]-v0[1],v2[2]-v0[2]];
+        const nx=e1[1]*e2[2]-e1[2]*e2[1], ny=e1[2]*e2[0]-e1[0]*e2[2], nz=e1[0]*e2[1]-e1[1]*e2[0];
+        const len=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;
+        const light = Math.max(0, (nx/len)*0.3+(ny/len)*(-0.5)+(nz/len)*0.8);
+        return {face, az, light, fi};
+      }).sort((a,b) => a.az - b.az);
 
-      // Code brackets </> with gradient
-      const textGrad = ctx.createLinearGradient(16, 24, 48, 44);
-      textGrad.addColorStop(0, color1);
-      textGrad.addColorStop(1, color2);
-      ctx.fillStyle = textGrad;
-      ctx.font = 'bold 19px Consolas, monospace';
+      // Draw faces
+      fd.forEach(({face, light, fi}) => {
+        const pts = face.map(i => pro[i]);
+        ctx.beginPath();
+        ctx.moveTo(pts[0][0], pts[0][1]);
+        for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i][0], pts[i][1]);
+        ctx.closePath();
+        const fh = (hue+fi*20)%360;
+        ctx.fillStyle = `hsl(${fh}, 60%, ${15+light*40}%)`;
+        ctx.fill();
+        ctx.strokeStyle = `hsla(${fh}, 80%, ${50+light*30}%, 0.7)`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        if(light > 0.5) {
+          const fcx2=pts.reduce((s,p)=>s+p[0],0)/4, fcy2=pts.reduce((s,p)=>s+p[1],0)/4;
+          const sp=ctx.createRadialGradient(fcx2-3,fcy2-3,0,fcx2,fcy2,14);
+          sp.addColorStop(0, `hsla(${fh},100%,90%,${(light-0.5)*0.5})`);
+          sp.addColorStop(1, 'transparent');
+          ctx.fillStyle = sp;
+          ctx.fill();
+        }
+      });
+
+      // Text on front face
+      const ff = fd[fd.length-1];
+      const fp = ff.face.map(i => pro[i]);
+      const ftx=fp.reduce((s,p)=>s+p[0],0)/4, fty=fp.reduce((s,p)=>s+p[1],0)/4;
+      const dx=fp[1][0]-fp[0][0], dy=fp[1][1]-fp[0][1];
+      const fs = Math.max(6, Math.min(14, Math.sqrt(dx*dx+dy*dy)*0.45));
+      const tg = ctx.createLinearGradient(ftx-10,fty,ftx+10,fty);
+      tg.addColorStop(0, `hsl(${hue},100%,75%)`);
+      tg.addColorStop(1, `hsl(${(hue+120)%360},100%,75%)`);
+      ctx.fillStyle = tg;
+      ctx.font = `bold ${fs}px Consolas,monospace`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('</>', 32, 37);
+      ctx.globalAlpha = 0.9;
+      ctx.fillText('</>', ftx, fty);
+      ctx.globalAlpha = 1;
 
-      // Pulsing glow dot at top
-      const pulse = 0.5 + 0.5 * Math.sin(t * 3);
-      const dotRadius = 2 + pulse * 1.5;
-      const dotGlow = ctx.createRadialGradient(32, 14, 0, 32, 14, dotRadius * 3);
-      dotGlow.addColorStop(0, `hsla(${hue1}, 100%, 70%, ${0.6 + pulse * 0.4})`);
-      dotGlow.addColorStop(1, 'transparent');
-      ctx.fillStyle = dotGlow;
-      ctx.fillRect(20, 4, 24, 20);
+      // Ambient glow
+      const gg = ctx.createRadialGradient(cx,cy,8,cx,cy,32);
+      gg.addColorStop(0, `hsla(${hue},100%,60%,0.08)`);
+      gg.addColorStop(1, 'transparent');
+      ctx.fillStyle = gg;
+      ctx.fillRect(0,0,S,S);
 
-      ctx.beginPath();
-      ctx.arc(32, 14, dotRadius, 0, Math.PI * 2);
-      ctx.fillStyle = `hsl(${hue1}, 100%, 75%)`;
-      ctx.fill();
-
-      // Update favicon
       link.href = canvas.toDataURL('image/png');
       frame++;
       requestAnimationFrame(draw);
     }
-
     draw();
   })();
 });
