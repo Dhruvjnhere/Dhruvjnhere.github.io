@@ -119,6 +119,7 @@ document.getElementById('contact-form')?.addEventListener('submit', async (e) =>
       body: formData
     });
     const result = await response.json();
+    console.log("Web3Forms Response:", result);
 
     if (result.success) {
       btn.textContent = '✓ Message Sent!';
@@ -129,6 +130,7 @@ document.getElementById('contact-form')?.addEventListener('submit', async (e) =>
       btn.textContent = '✗ Failed to send';
       btn.style.background = '#f44747';
       btn.style.opacity = '1';
+      console.error("Submission Error:", result.message);
     }
   } catch (err) {
     btn.textContent = '✗ Network error';
@@ -789,22 +791,12 @@ function typeEffect() {
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
-  // Load saved theme — default to hacker theme on mobile
+  // Load saved theme
   const savedTheme = localStorage.getItem('portfolio-theme');
-  const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
-    || (window.innerWidth <= 768);
-
   if (savedTheme && savedTheme !== 'default') {
-    // User has explicitly chosen a theme — respect it
     document.body.classList.add('theme-' + savedTheme);
     document.querySelectorAll('[data-theme]').forEach(i => {
       i.classList.toggle('active', i.dataset.theme === savedTheme);
-    });
-  } else if (isMobile && !savedTheme) {
-    // First-time mobile visitor — auto-apply hacker theme
-    document.body.classList.add('theme-hacker');
-    document.querySelectorAll('[data-theme]').forEach(i => {
-      i.classList.toggle('active', i.dataset.theme === 'hacker');
     });
   }
 
